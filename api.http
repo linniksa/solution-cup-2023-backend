@@ -1,0 +1,50 @@
+
+POST http://localhost:8080/api/v1/accounts
+Content-Type: application/json
+
+{
+    "firstName": "Петр",
+    "lastName": "Иванов",
+    "country": "Россия",
+    "birthDay": "1923-12-30",
+    "currency": "USD"
+}
+
+###
+
+GET http://localhost:8080/api/v1/accounts/3
+
+
+###
+GET http://localhost:8080/api/v1/accounts/456
+###
+
+POST http://localhost:8080/api/v1/accounts/1/top-up
+Content-Type: application/json
+
+{
+  "amount": 300000,
+  "topUpDate": "2023-02-27T20:00:00Z"
+}
+
+###
+
+POST http://localhost:8080/api/v1/transfers
+Content-Type: application/json
+
+{
+  "receiverAccount": 2,
+  "senderAccount": 1,
+  "amountInSenderCurrency": 10,
+  "transferDate": "2023-03-01T20:00:00Z"
+}
+
+###
+
+GET http://localhost:8080/api/v1/account-turnover/1?startDate=2023-01-01T00:00:00Z&endDate=2023-03-01T23:59:59Z
+
+###
+GET http://localhost:8080/api/v1/account-turnover/3?startDate=2023-01-01T00:00:00Z&endDate=2023-03-01T23:59:59Z
+###
+
+GET http://localhost:8080/api/v1/account-turnover/1?startDate=2023-01-01T00:00:00Z&endDate=2023-03-01T23:59:59Z
