@@ -18,21 +18,26 @@ func (Transaction) Fields() []ent.Field {
 		field.Enum("operation").GoType(TransactionType("")),
 		field.Time("date"),
 		field.Float("amount").SchemaType(map[string]string{
-			dialect.Postgres: "numeric", // Override Postgres.
+			dialect.Postgres: "numeric(20,2)", // Override Postgres.
 		}),
+		field.Int("account_id"),
 	}
 }
 
 func (Transaction) Edges() []ent.Edge {
 	return []ent.Edge{
-		edge.To("account", Account.Type).Unique(),
+		edge.
+			To("account", Account.Type).
+			Field("account_id").
+			Required().
+			Unique(), // uniq means one-to-many
 	}
 }
 
 // Indexes of the Card.
 func (Transaction) Indexes() []ent.Index {
 	return []ent.Index{
-		index.Fields("transaction_account", "date"),
+		index.Fields("account_id", "date"),
 	}
 }
 

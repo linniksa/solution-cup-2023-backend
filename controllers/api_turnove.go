@@ -50,7 +50,7 @@ func init() {
 				return err
 			}
 
-			sql := `select sum(amount) from transactions where transaction_account = $1`
+			sql := `select sum(amount) from transactions where account_id = $1`
 
 			args := make([]interface{}, 0, 5)
 			args = append(args, account.ID)
